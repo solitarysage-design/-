@@ -1,0 +1,27 @@
+name: J-Quants Dividend Value Screen
+
+on:
+  schedule:
+    - cron: '5 22 * * 0' # JST Mon 07:05 (weekly)
+  workflow_dispatch:
+
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run screener
+        env:
+          JQUANTS_API_KEY: ${{ secrets.JQUANTS_API_KEY }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: python main.py
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: screen-results
+          path: output/screen_results.csv
