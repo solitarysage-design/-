@@ -1,0 +1,40 @@
+strict_mode: true
+top_n: 10
+post_to_slack: true
+max_retries: 4
+backoff_seconds: 1.2
+
+thresholds:
+  min_dividend_years: 5
+  min_operating_cf_positive_years: 4
+  min_fcf_positive_years: 3
+  fcf_payout_max: 0.70
+  fcf_payout_max_sensitive: 0.60
+  profit_payout_max: 0.60
+  profit_cover_min: 1.5
+  fcf_cover_min: 1.2
+  eps_cagr_min: 0.03
+  net_debt_ebitda_max: 2.0
+  net_debt_ebitda_max_utility: 3.0
+  interest_coverage_min: 5.0
+
+soft_weights:
+  dps_cagr_3pct: 2
+  dps_cagr_5pct: 3
+  share_count_reduction: 2
+  roic_or_roe: 2
+  cf_margin_stability: 2
+
+value_rules:
+  dividend_yield_low: 0.032
+  dividend_yield_high: 0.055
+  dividend_yield_audit_flag: 0.06
+  fcf_yield_min: 0.05
+  per_max: 14.0
+  pbr_max: 1.2
+  min_signals_to_pass: 2
+
+sector_sensitive_codes: []
+utility_like_codes: []
+
+manual_policy_csv: "data/manual_policy.csv"
