@@ -1,8 +1,8 @@
 name: J-Quants Dividend Value Screen
 
 on:
-  schedule:
-    - cron: '5 22 * * 0' # JST Mon 07:05 (weekly)
+  # schedule:
+  #   - cron: '5 22 * * 0' # JST Mon 07:05 (weekly)
   workflow_dispatch:
 
 jobs:
